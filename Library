@@ -1,0 +1,131 @@
+
+
+package ateeq;
+import java.util.*;
+import java.lang.*;
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+/**
+ *
+ * @author hrehman.bscs13seecs
+ */
+public class MatrixMultiply 
+{    //...
+
+    Double[][] mat;
+    Double[][] mat2;
+    Double[][] result;
+    public MatrixMultiply() 
+    {
+        this.mat = new Double[3][3];
+        this.mat2 = new Double[3][3];
+        this.result=new Double[3][3];
+    }
+    public int defineMat()
+    {
+        Scanner reader = new Scanner(System.in);  // Reading from System.in
+        System.out.println("Please enter the contents of matrix 1: ");
+        for(int i=0;i<3;i++)
+        {
+            for(int j=0;j<3;j++)
+            {
+                mat[i][j] = reader.nextDouble();
+                while(mat[i][j].isNaN())
+                {
+                    System.out.println("Error at "+i+"  "+j+"  member of matrix");
+                    mat[i][j] = reader.nextDouble();                    
+                }
+            }
+        }
+        System.out.println("First matrix is comleted. ");
+        System.out.println("Please enter the contents of matrix 2: ");
+        for(int i=0;i<3;i++)
+        {
+            for(int j=0;j<3;j++)
+            {
+                
+                mat2[i][j] = reader.nextDouble();
+                while(mat2[i][j].isNaN())
+                {
+                    System.out.println("Error at "+i+"  "+j+"  member of matrix");
+                    mat2[i][j] = reader.nextDouble();                    
+                }
+            }
+        }
+        System.out.println("Second matrix is comleted. ");
+        for(int i=0;i<3;i++)
+        {
+            for(int j=0;j<3;j++)
+            {
+                result[i][j] = 0.0; 
+            }
+        }
+        return 0;
+    }
+    public int verifyMatrix(Double[][] mat1,Double[][] mat2)
+    {
+        int a=0;
+        for(int i=0;i<3;i++)
+        { for(int j=0;j<3;j++)
+            {
+                if(mat1[i][j].isNaN())
+                {
+                    System.out.println("Error in the conets of matrix 1");
+                    a=1;
+                    return a;
+                }
+                 if(mat2[i][j].isNaN())
+                {
+                    System.out.println("Error in the conets of matrix 2");
+                    a=1;
+                    return a;
+                }
+            }
+        }
+        return a;
+    }
+    
+    public Double[][] mMultiply()
+    {
+        Double[][] fmat;
+        fmat=new Double[3][3];
+        Double[][] fmat2;
+        fmat2=new Double[3][3];
+        Double abc=1.0;
+        for(int i=0;i<3;i++)
+            for(int j=0;j<3;j++)
+            {
+                fmat[i][j]=abc;
+                fmat2[i][j]=abc;
+                abc+=1.0;
+            }
+            Double sampleResult;
+            sampleResult = 0.0;
+            for (int i=0;i<3;i++)
+            {
+                for(int j=0;j<3;j++)
+                {
+                    for(int k=0;k<3;k++)
+                    {
+                        sampleResult += fmat[i][k] * fmat2[k][j];
+                        result[i][j] = sampleResult;
+                    }
+                }
+            }
+            System.out.println("Resultant matrix: ");
+            for(int i=0;i<3;i++)
+            {
+                for(int j=0;j<result.length;j++)
+                {
+                    System.out.print(result[i][j]+"\t");
+                }
+                System.out.println();
+            }
+            return result;
+        }
+      
+}
